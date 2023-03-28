@@ -24,7 +24,7 @@ You must fork this repository to your Github account. This allows you to easily 
 Open your terminal and run the following:
 
 ```bash
-git clone
+git clone https://github.com/programmable-banking-community/save-it
 Rename the `.env.local.example` to `.env.local`
 Replace with YOUR api keys and secrets
 ```
