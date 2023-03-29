@@ -2,12 +2,12 @@
 
 A web app that helps you maximise your savings with Programmable Banking.
 
-- Save-It allows you to set the minumum and maximum amount that you wish to maintain in your current account (you set the rules) 
+- Save-It allows you to set the minumum and maximum amount that you wish to maintain in your current account (you set the rules)
 - It also allows you to set the frequency at which you want the rules to run (every 10 min, 20 min or 30 min)
-- Once you set the rules, Save-it will automatically transfer the optimal amount between your current and savings account and maintain this at the frequency that you set. 
+- Once you set the rules, Save-it will automatically transfer the optimal amount between your current and savings account and maintain this at the frequency that you set.
 - Save-It uses the [Investec Transfer API](https://developer.investec.com/za/api-products).
 
-![Example](/docs/example.png)
+![Example](/docs/image.png)
 
 ## ☑️ Requirements
 
@@ -48,9 +48,9 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## 👨‍💻 Contributions
 
-Possible additions: 
+Possible additions:
 
-- Enable the user to set up the rules for each day of the month in order to account for variance such as debit orders coming off the account 
+- Enable the user to set up the rules for each day of the month in order to account for variance such as debit orders coming off the account
 - Hook up to [Herouku](https://www.heroku.com/) and [Digital Ocean](https://www.digitalocean.com/)
 
 Pull requests and changes are welcome.
