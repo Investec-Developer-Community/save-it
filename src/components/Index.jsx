@@ -84,7 +84,7 @@ const Index = ({ accounts, privateAccountId }) => {
     <>
       <div className="min-h-full">
         <main className="mt-10">
-          { stateAccounts.length < 2
+          { stateAccounts && stateAccounts.length < 2
             ? <AccountWarning />
             :
             <>
