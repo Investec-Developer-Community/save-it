@@ -90,17 +90,13 @@ const Index = ({ accounts, privateAccountId }) => {
             <div className="grid grid-cols-1 items-start gap-4 lg:grid-cols-3 lg:gap-8">
               <div className="grid grid-cols-1 gap-4 lg:col-span-2">
                 <section>
-                  <h3 className="text-center text-base font-semibold leading-6 text-gray-900 pb-6">Rules</h3>
                   <div className="overflow-hidden rounded-lg bg-white shadow">
                     <div className="p-6 grid grid-cols-1 gap-4">
                       <form className="" onSubmit={setRule}>
                         <div>
                           <div className="mt-1">
                             <div className="pb-2">
-                              <label className="block text-sm font-medium text-gray-500">
-                                Values
-                              </label>
-                              <span className="text-gray-500 italic text-xs">Set the optimal min and max value you want for your Private Account. Let Save-it automatically make the transfers</span>
+                              <span className="text-gray-500 italic text-xs">Set the min and max rand value you want for your Private Bank Account. A target amount will be calculated based on those values and Save-It will automatically make the transfer</span>
                             </div>
                             <input
                               name="min-value"
@@ -114,12 +110,13 @@ const Index = ({ accounts, privateAccountId }) => {
                               onChange={(e) => setMaxRule(parseFloat(e.target.value))}
                               className="appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm sm:text-sm"
                             />
+                            <span className="text-gray-500 italic text-xs ml-2">Target amount = min value + max value / 2</span>
                           </div>
                         </div>
 
                         <div className="mt-3">
                           <label className="block text-sm font-medium text-gray-500">
-                            Sync frequency
+                            Set the frequency at which your rules will run
                           </label>
                           {frequencies.map((frequency) => (
                             <div key={frequency.id} className="flex items-center">
@@ -159,8 +156,7 @@ const Index = ({ accounts, privateAccountId }) => {
               </div>
 
               <div className="grid grid-cols-1 gap-4">
-                <section aria-labelledby="section-2-title">
-                  <h3 className="text-center text-base font-semibold leading-6 text-gray-900">Accounts Breadown</h3>
+                <section>
                   <div className="overflow-hidden rounded-lg">
                     <div>
                       {stateAccounts &&
