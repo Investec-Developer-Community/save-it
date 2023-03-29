@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import AccountCard from './AccountCard';
 import axios from 'axios';
 import { CronJob } from 'cron';
@@ -7,11 +7,15 @@ import { formatAmount } from '../../lib/helpers';
 import AccountWarning from './AccountWarning';
 
 const Index = ({ accounts, privateAccountId }) => {
+  const rulesFormRef = useRef(null);
+
   const [stateAccounts, setStateAccounts] = useState(null);
   const [minRule, setMinRule] = useState(0);
   const [maxRule, setMaxRule] = useState(0);
   const [frequency, setFrequency] = useState(10);
   const [isLoading, setIsLoading] = useState(false);
+  const [currentJob, setCurrentJob] = useState(null);
+  const [isJobRunning, setIsJobRunning] = useState(false);
   const [notifcation, setNotification] = useState('')
 
   useEffect(() => {
@@ -26,9 +30,16 @@ const Index = ({ accounts, privateAccountId }) => {
     { id: '30', title: 'Every 30 minutes' },
   ]
 
-  const derp = [
-    { id: "hello" }
-  ]
+  const stopJob = () => {
+    currentJob.stop();
+    rulesFormRef.current.reset();
+    setMaxRule(0);
+    setMinRule(0);
+    setFrequency(10);
+    setNotification('');
+    setCurrentJob(null);
+    setIsJobRunning(false);
+  }
 
   const setRule = async (e) => {
     e.preventDefault();
@@ -72,7 +83,8 @@ const Index = ({ accounts, privateAccountId }) => {
       });
 
       job.start();
-      console.log('is job running? ', job.running);
+      setCurrentJob(job);
+      setIsJobRunning(job.running);
     }
     catch(e) {
       console.log(e);
@@ -101,7 +113,9 @@ const Index = ({ accounts, privateAccountId }) => {
                     <section>
                       <div className="overflow-hidden rounded-lg bg-white shadow">
                         <div className="p-6 grid grid-cols-1 gap-4">
-                          <form className="" onSubmit={setRule}>
+                          <form
+                            ref={rulesFormRef}
+                            onSubmit={setRule}>
                             <div>
                               <div className="mt-1">
                                 <div className="pb-2">
@@ -144,7 +158,7 @@ const Index = ({ accounts, privateAccountId }) => {
                                 </div>
                               ))}
                             </div>
-                            <div className="mt-6">
+                            <div className="flex mt-6">
                               <button
                                 type="submit"
                                 className="flex justify-center rounded-md border border-transparent bg-green-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-green-700"
@@ -157,6 +171,15 @@ const Index = ({ accounts, privateAccountId }) => {
                                 }
                                 Set Rule
                               </button>
+                              { isJobRunning &&
+                                <button
+                                  type="button"
+                                  className="ml-2 flex justify-center rounded-md border border-transparent bg-red-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-red-700"
+                                  onClick={stopJob}
+                                >
+                                Stop
+                                </button>
+                              }
                             </div>
                           </form>
                         </div>

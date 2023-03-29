@@ -9,7 +9,7 @@ const AccountWarning = () => {
         </div>
         <div className="ml-3">
           <p className="text-sm text-yellow-700">
-            Please note that you only have one bank account. The app requires a minimum of two in order to facilitate transfers
+            It looks like you only have one bank account available. Please note that Save-It requires a minimum of two bank accounts to facilitate transfers.
           </p>
         </div>
       </div>
