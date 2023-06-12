@@ -7,6 +7,8 @@ A web app that helps you maximise your savings with Programmable Banking.
 - Once you set the rules, Save-it will automatically transfer the optimal amount between your current and savings account and maintain this at the frequency that you set.
 - Save-It uses the [Investec Transfer API](https://developer.investec.com/za/api-products).
 
+Note: Save-It uses a cron job to run the rules at the frequency that you set. This means that you will need to keep the app running in the background for the rules to run and for the money to continue to be transferred between your accounts.
+
 ![Example](/docs/image.png)
 
 ## ☑️ Requirements
